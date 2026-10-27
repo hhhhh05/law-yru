@@ -1,0 +1,63 @@
+
+    <nav class="navbar navbar-expand-lg " style="height: 60px; background-color: #C0C0C0;">
+
+
+        <div class="collapse navbar-collapse" ></div>
+        <div class="form-inline my-5 my-lg-5">
+                @guest
+                    @php
+                        $http_build_query = http_build_query([
+                        'client_id' => env('OAUTH_CLIENT_ID'),
+                        'redirect_uri' => env('OAUTH_CLIENT_REDIRECT_URI'),
+                        'response_type' => 'code',
+                        'scope' => '*',
+                    ]);
+                        $URI = 'https://passport.yru.ac.th/oauth/authorize?'.$http_build_query;
+                    @endphp
+                        <a href="{{$URI}}" ><img src="{{asset('media/logos/yru_passport.jpg') }}" class="img-rounded" alt="Cinque Terre" width="200" height="50"></a>&nbsp;&nbsp;&nbsp;
+                        <a style="width:150px; height: 50px; background-color: #FFFAFD; font-size:23px; color:#FA76CE;" class="btn" target ="_blank" href="https://drive.google.com/file/d/10QiCNnqSIU0NvJfpwX-2TYa5caXM80wq/view?usp=sharing" >วิธีใช้งาน</a>
+
+                        @elseif(session('stutas')=="")
+                        <div class="col-md-2 float-right">
+
+                            <a class="btn btn-light  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{session('name')}}{{session('stutas')}}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a target ="_blank" href="https://forms.gle/UaAPWHSkaUh2cYyo8"  class="dropdown-item" role="button">ขอเพิ่มสิทธิ์การใช้งาน</a>
+                                <a href="{{ route('auth.logout') }}"  class="dropdown-item" role="button">ออกจากระบบ</a>
+                            </div>
+                        </div>
+                        @elseif(session('stutas')=="1")
+                        <div class="col-md-2 float-right">
+                            <a class="btn btn-light  dropdown-toggle" href="/law" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{session('name')}}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a  href="/law"  class="dropdown-item" role="button">เข้าสู่ระบบนิติกร</a>
+                                <a href="{{ route('auth.logout') }}"  class="dropdown-item" role="button">ออกจากระบบ</a>
+                            </div>
+                        </div>
+                        @else
+                    <div class="col-md-2 float-right">
+                        <a class="btn btn-light  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{session('name')}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a  href="/lawyer"  class="dropdown-item" role="button">เข้าสู่ระบบนนักกฎหมาย</a>
+                            <a href="{{ route('auth.logout') }}"  class="dropdown-item" role="button">ออกจากระบบ</a>
+                        </div>
+                    </div>
+                @endguest
+        </div>
+    </nav>
+
+<div class="row col-12">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <img data-fixed class="slide-bg" src="{{ asset('media/logos/banner_law.png') }}" width="1150" height="400" alt="">
+    </div>
+    <div class="col-1"></div>
+</div>
+
+

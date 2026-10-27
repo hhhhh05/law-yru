@@ -1,0 +1,41 @@
+{{-- ผลการค้นหาภายในหมวด (เรียกจาก FRontendController::categorySearch) --}}
+<p style="color:#555; margin:8px 0 4px;">
+    ผลการค้นหา “{{ $keyword }}” พบ {{ number_format($laws->count()) }} ฉบับ
+</p>
+
+@if($laws->isEmpty())
+    <p style="color:#999; padding:16px 0;">ไม่พบกฎหมายที่ตรงกับคำค้นในหมวดนี้</p>
+@else
+    <table class="table">
+        <tbody>
+            @foreach ($groups as $groupName => $items)
+            <tr class="content">
+                <td>
+                    <div style="width:100%; word-wrap: break-word;" class="pointer">
+                        <h6 style="color:blue">{{ $groupName }} ({{ $items->count() }} ฉบับ)</h6>
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            @foreach ($items as $row)
+                            <tr class="target">
+                                @if($row->stutas == 1)
+                                <td style="padding-left:5%; width:910px; color:#778899;">
+                                    <a style="color:black;" target="_blank" href="{{ asset('@laravel/storage/app/public/law/'.$row->file_law) }}">{{ $row->law_name }}</a>
+                                    [ประกาศใช้ เมื่อ{{ DateThaiFull($row->date_out) }}]@if(isNewLaw($row->date_out))<span class="new-badge">NEW</span>@endif
+                                </td>
+                                @else
+                                <td style="color:red; padding-left:5%; width:910px;">
+                                    <a style="color:black;" target="_blank" href="{{ asset('@laravel/storage/app/public/law/'.$row->file_law) }}">{{ $row->law_name }}</a>
+                                    [ยกเลิก เมื่อ{{ DateThaiFull($row->date_out) }}]
+                                </td>
+                                @endif
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endif

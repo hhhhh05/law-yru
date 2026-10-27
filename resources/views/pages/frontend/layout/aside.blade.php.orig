@@ -1,0 +1,63 @@
+<?php
+use Illuminate\Support\Facades\DB;
+?>
+        <div class="col-md-3">
+
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                    <div class="list-group list-group-flush">
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3" style="color:black; font-size:17px; background-color:#ff80bf;" href="/">หน้าแรก</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "constitution") ? "active":""}}" style="color:black; font-size:17px;" href="/constitution">รัฐธรรมนูญ</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "enactment") ? "active":""}}" style="color:black; font-size:17px;" href="/enactment">พระราชบัญญัติ</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "royal_enactment") ? "active":""}}" style="color:black; font-size:17px;" href="/royal_enactment">พระราชกำหนด</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "decree") ? "active":""}}" style="color:black; font-size:17px;" href="/decree">พระราชกฤษฎีกา</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "ministry") ? "active":""}}" style="color:black; font-size:17px;" href="/ministry">กฎกระทรวง</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "announcement") ? "active":""}}" style="color:black; font-size:17px;" href="/announcement">ประกาศกระทรวง</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "regularity") ? "active":""}}" style="color:black; font-size:17px;" href="/regularity">ระเบียบ</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "rules") ? "active":""}}" style="color:black; font-size:17px;" href="/rules">ข้อบังคับ</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "declare") ? "active":""}}" style="color:black; font-size:17px;" href="/declare">ประกาศ</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "dictation") ? "active":""}}" style="color:black; font-size:17px;" href="/dictation">คำสั่ง</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "practice") ? "active":""}}" style="color:black; font-size:17px;" href="/practice">แนวปฏิบัติ</a>
+                        <a class="list-group-item list-group-item-action list-group-item-light p-3 nav-link {{(app('request')->route()->uri() == "other") ? "active":""}}" style="color:black; font-size:17px;" href="/other">อื่นๆ</a>
+                    </div>
+            </div><br><br>
+
+
+
+            <div class="row" >
+                <a style="width:80%px; background-color: #ff80bf;" class="btn" href="https://www.krisdika.go.th/law" target ="_blank"><img src="{{ asset('media/logos/kk_logo.png') }}" width="250" height="80" alt="" /></a>
+            </div><br>
+
+            <div class="row" >
+                <a style="width:80%px; background-color: #ff80bf;" class="btn" href="https://www.mhesi.go.th/" target ="_blank"><img src="{{ asset('media/logos/aw_logo.png') }}" width="250" height="80" alt="" /></a>
+            </div><br>
+
+            <div class="row" >
+                <a style="width:80%px; background-color: #ff80bf;" class="btn" href="https://www.admincourt.go.th/admincourt/site/" target ="_blank"><img src="{{ asset('media/logos/pp_logo.png') }}" width="250" height="80" alt="" /></a>
+            </div><br>
+
+            <div class="row" >
+                <a style="width:80%px; background-color: #ff80bf;" class="btn" href="http://61.19.244.196/" target ="_blank"><img src="{{ asset('media/logos/mm_logo.png') }}" width="250" height="80" alt="" /></a>
+            </div><br>
+
+            <div class="row" >
+                <a style="width:80%px; background-color: #ff80bf;" class="btn" href="https://www.nacc.go.th/" target ="_blank"><img src="{{ asset('media/logos/bb_logo.png') }}" width="250" height="80" alt="" /></a>
+            </div><br>
+
+            <div class="row" >
+                <a style="width:80%px; background-color: #ff80bf;" class="btn" href="https://www.audit.go.th/th/home" target ="_blank"><img src="{{ asset('media/logos/ss_logo.png') }}" width="250" height="80" alt="" /></a>
+            </div><br>
+
+            <div class="row" >
+                <a style="width:80%px; background-color: #ff80bf;" class="btn" href="http://www.oic.go.th/web2017/main_.html" target ="_blank"><img src="{{ asset('media/logos/sk_logo.png') }}" width="250" height="80" alt="" /></a>
+            </div><br>
+
+            <div class="row" >
+                <a style="width:80%px; background-color: #ff80bf;" class="btn" href="https://www.cgd.go.th/cs/internet/internet/%E0%B8%AB%E0%B8%99%E0%B9%89%E0%B8%B2%E0%B8%AB%E0%B8%A5%E0%B8%B1%E0%B8%812.html" target ="_blank"><img src="{{ asset('media/logos/bk1_logo.png') }}" width="250" height="80" alt="" /></a>
+            </div><br>
+
+            <div class="row" >
+                <a style="width:80%px; background-color: #ff80bf;" class="btn" href="https://www.thaigov.go.th/" target ="_blank"><img src="{{ asset('media/logos/rr_logo.png') }}" width="250" height="80" alt="" /></a>
+            </div><br>
+
+
+        </div>

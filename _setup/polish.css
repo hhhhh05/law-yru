@@ -1,0 +1,60 @@
+<style>
+    /* ===== จัดหน้าให้สมดุล ===== */
+    body { background:#faf6f9; }
+    .page-wide { padding-top:4px; }
+
+    /* เมนูด้านซ้าย */
+    .side-wrap { position:sticky; top:96px; display:flex; flex-direction:column; gap:18px; margin-bottom:24px; }
+    .side-card { background:#fff; border:1px solid #f3dce9; border-radius:14px; overflow:hidden; box-shadow:0 4px 14px rgba(255,20,147,.06); }
+    .side-head { padding:12px 18px; font-weight:700; font-size:16px; color:#fff; background:linear-gradient(90deg,#ff1493,#ff5cb3); }
+    .side-menu { display:flex; flex-direction:column; padding:8px; }
+    .side-menu a { display:block; padding:9px 14px; border-radius:9px; color:#333; font-size:16px; text-decoration:none; transition:background .15s,color .15s; }
+    .side-menu a:hover { background:#ffe6f3; color:#ff1493; text-decoration:none; }
+    .side-menu a.active { background:#ff1493; color:#fff; font-weight:600; box-shadow:0 3px 10px rgba(255,20,147,.3); }
+    .side-links { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:12px; }
+    .side-links a { display:flex; align-items:center; justify-content:center; height:64px; padding:6px; border:1px solid #f1e4ec;
+                    border-radius:10px; background:#fff; transition:transform .15s, box-shadow .15s, border-color .15s; }
+    .side-links a:hover { transform:translateY(-2px); border-color:#ff8ccb; box-shadow:0 6px 14px rgba(255,20,147,.15); }
+    .side-links img { max-width:100%; max-height:100%; object-fit:contain; }
+    .side-links a:last-child:nth-child(odd) { grid-column:1 / -1; }
+
+    /* หัวข้อหน้า */
+    .mu-title h2 { font-size:26px; font-weight:700; color:#2b2b33; margin:0; padding-left:14px; border-left:5px solid #ff1493; line-height:1.3; }
+    .mu-title + br { display:none; }
+
+    /* ช่องค้นหา */
+    #Search, #search { height:48px; padding:0 18px 0 46px; border:1.5px solid #f3c2dc; border-radius:999px; font-size:16px; background:#fff
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23ff1493' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='16.5' y1='16.5' x2='21' y2='21'/%3E%3C/svg%3E") no-repeat 18px center;
+        box-shadow:0 2px 8px rgba(0,0,0,.03); margin:14px 0 18px; }
+    #Search:focus, #search:focus { border-color:#ff1493; box-shadow:0 0 0 4px rgba(255,20,147,.12); outline:none; }
+    #Search + span, #Search ~ br { display:none; }
+
+    /* กลุ่มเรื่อง: การ์ด */
+    #tag_container, #category_container { padding:0; }
+    tr.content { display:block; }
+    tr.content > td { display:block; background:#fff; border:1px solid #f1e4ec !important; border-radius:14px; padding:14px 18px 6px;
+                      margin-bottom:16px; box-shadow:0 3px 12px rgba(0,0,0,.035); }
+    tr.content .pointer h6 { color:#c2185b !important; font-size:16px; font-weight:700; margin:0 0 6px; }
+    tr.content .table { margin-bottom:6px; }
+    tr.content .table tr:first-child td { border-top:0; }
+    .table td.law-cell { padding:10px 4px 10px 14px; border-top:1px dashed #efe3ea; }
+    .table td.law-cell:hover { background:#fff8fc; }
+    .pagination .page-link { color:#ff1493; border-color:#f3dce9; }
+    .pagination .page-item.active .page-link { background:#ff1493; border-color:#ff1493; color:#fff; }
+
+    @media (max-width: 767px) {
+        /* มือถือ: เมนูเป็นแถบเลื่อนด้านบน เนื้อหาตามมา หน่วยงานไว้ท้ายสุด */
+        .side-col, .side-wrap { display:contents; }
+        .side-card { width:calc(100% - 30px); margin:0 15px 14px; }
+        .side-menu-card { order:1; }
+        .main-col { order:2; }
+        .side-agency { order:3; margin-top:6px; }
+        .side-menu-card .side-head { display:none; }
+        .side-menu { flex-direction:row; gap:6px; overflow-x:auto; padding:10px; -webkit-overflow-scrolling:touch; }
+        .side-menu a { flex:none; white-space:nowrap; padding:7px 14px; border:1px solid #f3dce9; border-radius:999px; font-size:15px; }
+        .mu-title h2 { font-size:22px; }
+        tr.content > td { padding:12px 12px 4px; }
+        .table td.law-cell { padding-left:8px; }
+    }
+</style>
+</head>

@@ -1,0 +1,181 @@
+<?php
+
+// ค้นหาวัน จากวันA ถึง วันB หางกันกีวัน กีชั่วโมง กีนาที
+if(!function_exists('__TimeDHM')){
+	function __TimeDHM($t1,$t2){ // ส่งวันที่ที่ต้องการเปรียบเทียบ ในรูปแบบ มาตรฐาน 2006-03-27 21:39:12
+
+		$t1Arr=splitTime($t1);
+		$t2Arr=splitTime($t2);
+
+		$Time1=mktime($t1Arr["h"], $t1Arr["m"], $t1Arr["s"], $t1Arr["M"], $t1Arr["D"], $t1Arr["Y"]);
+		$Time2=mktime($t2Arr["h"], $t2Arr["m"], $t2Arr["s"], $t2Arr["M"], $t2Arr["D"], $t2Arr["Y"]);
+		$TimeDiv=abs($Time2-$Time1);
+
+		$Time["D"]=intval($TimeDiv/86400); // จำนวนวัน
+		$Time["H"]=intval(($TimeDiv%86400)/3600); // จำนวน ชั่วโมง
+		$Time["M"]=intval((($TimeDiv%86400)%3600)/60); // จำนวน นาที
+		$Time["S"]=intval(((($TimeDiv%86400)%3600)%60)); // จำนวน วินาที
+
+		if($Time['D'] == 0){
+			if($Time['H'] == 0){
+				$min = $Time['M'];
+				return "$min นาที";
+			}else{
+				$hour = $Time['H'];
+				$min = $Time['M'];
+				return "$hour ชั่วโมง $min นาที";
+			}
+		}else{
+			$day = $Time['D'];
+			$hour = $Time['H'];
+			$min = $Time['M'];
+			return "$day วัน $hour ชั่วโมง $min นาที";
+		}
+	}
+
+	function splitTime($time){ // เวลาในรูปแบบ มาตรฐาน 2006-03-27 21:39:12
+		$timeArr["Y"]= substr($time,2,2);
+		$timeArr["M"]= substr($time,5,2);
+		$timeArr["D"]= substr($time,8,2);
+		$timeArr["h"]= substr($time,11,2);
+		$timeArr["m"]= substr($time,14,2);
+		$timeArr["s"]= substr($time,17,2);
+	return $timeArr;
+	}
+}
+// ค้นหาวัน จากวันA ถึง วันB หางกันกีวัน กีชั่วโมง กีนาที
+
+if(!function_exists('Formatdate')){
+    function Formatdate($strDate)
+	{
+        if(date("Y",strtotime($strDate)) > '2540'){
+            $strYear = date("Y",strtotime($strDate));
+        }else{
+            $strYear = date("Y",strtotime($strDate))+543;
+        }
+		$strMonth= date("n",strtotime($strDate));
+		$strDay= date("j",strtotime($strDate));
+		if($strDay > 0 AND $strDay < 10){
+			$strDay= '0'.$strDay;
+		}
+		$strHour= date("H",strtotime($strDate));
+		$strMinute= date("i",strtotime($strDate));
+		$strSeconds= date("s",strtotime($strDate));
+		return "$strYear-$strMonth-$strDay $strHour:$strMinute:$strSeconds";
+	}
+}
+
+if(!function_exists('TimeThai')){
+    function TimeThai($strDate)
+	{
+		$strHour= date("H",strtotime($strDate));
+		$strMinute= date("i",strtotime($strDate));
+		$strSeconds= date("s",strtotime($strDate));
+		return "$strHour:$strMinute";
+	}
+}
+
+if(!function_exists('DateThai')){
+    function DateThai($strDate)
+	{
+        if(date("Y",strtotime($strDate)) > '2540'){
+            $strYear = date("Y",strtotime($strDate));
+        }else{
+            $strYear = date("Y",strtotime($strDate))+543;
+        }
+		$strMonth= date("n",strtotime($strDate));
+		$strDay= date("j",strtotime($strDate));
+		if($strDay > 0 AND $strDay < 10){
+			$strDay= '0'.$strDay;
+		}
+		$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+		$strMonthThai=$strMonthCut[$strMonth];
+		return "$strDay $strMonthThai $strYear";
+	}
+}
+
+if(!function_exists('DateThaiFull')){
+    function DateThaiFull($strDate)
+	{
+        if(date("Y",strtotime($strDate)) > '2540'){
+            $strYear = date("Y",strtotime($strDate));
+        }else{
+            $strYear = date("Y",strtotime($strDate))+543;
+        }
+		$strMonth= date("n",strtotime($strDate));
+		$strDay= date("j",strtotime($strDate));
+		if($strDay > 0 AND $strDay < 10){
+			$strDay= '0'.$strDay;
+		}
+		$strMonthCut = Array("","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
+		$strMonthThai=$strMonthCut[$strMonth];
+		return "$strDay $strMonthThai $strYear";
+	}
+}
+
+if(!function_exists('DatetimeThai')){
+    function DatetimeThai($strDate)
+	{
+        if(date("Y",strtotime($strDate)) > '2540'){
+            $strYear = date("Y",strtotime($strDate));
+        }else{
+            $strYear = date("Y",strtotime($strDate))+543;
+        }
+		$strMonth= date("n",strtotime($strDate));
+		$strDay= date("j",strtotime($strDate));
+		if($strDay > 0 AND $strDay < 10){
+			$strDay= '0'.$strDay;
+		}
+		$strHour= date("H",strtotime($strDate));
+		$strMinute= date("i",strtotime($strDate));
+		$strSeconds= date("s",strtotime($strDate));
+		$strMonthCut = Array("","ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
+		$strMonthThai=$strMonthCut[$strMonth];
+		return "$strDay $strMonthThai $strYear, $strHour:$strMinute";
+	}
+}
+
+if(!function_exists('DatetimeThaiFull')){
+    function DatetimeThaiFull($strDate)
+	{
+        if(date("Y",strtotime($strDate)) > '2540'){
+            $strYear = date("Y",strtotime($strDate));
+        }else{
+            $strYear = date("Y",strtotime($strDate))+543;
+        }
+		$strMonth= date("n",strtotime($strDate));
+		$strDay= date("j",strtotime($strDate));
+		if($strDay > 0 AND $strDay < 10){
+			$strDay= '0'.$strDay;
+		}
+		$strHour= date("H",strtotime($strDate));
+		$strMinute= date("i",strtotime($strDate));
+		$strSeconds= date("s",strtotime($strDate));
+		$strMonthCut = Array("","มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
+		$strMonthThai=$strMonthCut[$strMonth];
+		return "$strDay $strMonthThai $strYear, $strHour:$strMinute";
+	}
+}
+
+// กฎหมายใหม่: วันที่ประกาศใช้อยู่ในช่วง $days วันที่ผ่านมา (ไม่นับวันในอนาคต)
+// รองรับทั้งปี พ.ศ. (เช่น 2569-10-14) และ ค.ศ. (2026-10-14)
+if(!function_exists('isNewLaw')){
+    function isNewLaw($date, $days = 30)
+    {
+        if (empty($date)) {
+            return false;
+        }
+        $ts = strtotime($date);
+        if ($ts === false) {
+            return false;
+        }
+        $year = (int) date('Y', $ts);
+        if ($year > 2400) {
+            $ts = strtotime(($year - 543).date('-m-d', $ts));
+        }
+        $day   = strtotime(date('Y-m-d', $ts));
+        $today = strtotime(date('Y-m-d'));
+        $diff  = ($today - $day) / 86400;
+        return $diff >= 0 && $diff <= $days;
+    }
+}
